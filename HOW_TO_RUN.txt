@@ -1,0 +1,41 @@
+========================================================================
+🌱 AEROPONICS FOG IOT PROJECT - QUICK START GUIDE
+========================================================================
+
+Hi! Here is how to run this project on your laptop in 2 simple steps:
+
+STEP 1: INSTALL DEPENDENCIES
+Open Command Prompt (cmd) or PowerShell inside this folder and run:
+    pip install -r requirements.txt
+
+STEP 2: RUN THE ENTIRE SYSTEM
+Run this single command:
+    python run_all.py
+
+------------------------------------------------------------------------
+WHAT HAPPENS WHEN YOU RUN IT:
+------------------------------------------------------------------------
+1. It automatically launches:
+   - A local MQTT Broker (on localhost:1883)
+   - The Aeroponic Sensor Simulator (sensor_simulator.py)
+   - The Fog Computing Node (fog_node.py)
+   - The Interactive Web Dashboard (dashboard.py)
+
+2. Your browser will automatically open at:
+   http://localhost:8501
+
+------------------------------------------------------------------------
+HOW TO DEMO / TEST ON THE DASHBOARD:
+------------------------------------------------------------------------
+- LIVE SENSORS: Watch the 6 sensor readings update every 2 seconds.
+- AUTOMATIC MISTING: If humidity drops below 70%, the pump turns ON.
+  When humidity exceeds 85%, it turns OFF.
+- MANUAL CONTROL: Click 'Pump ON', 'Pump OFF', or 'AUTO' in the sidebar.
+- FAULT INJECTION: Click buttons like 'Stuck Sensor', 'Out of Range',
+  'Sensor Offline', or 'Pump Failure' to see instant edge detection.
+- FOG VS CLOUD: Toggle 'Simulate Cloud Processing' to compare edge
+  speed (<2ms) vs cloud delay (~300ms).
+
+To stop the system: Press Ctrl + C in the terminal window.
+For complete academic notes, diagrams, and viva Q&A, open README.md.
+========================================================================

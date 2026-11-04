@@ -1,0 +1,46 @@
+{
+  "mqtt": {
+    "broker": "localhost",
+    "port": 1883,
+    "keepalive": 60,
+    "topics": {
+      "sensors": "aeroponics/sensors",
+      "pump_state": "aeroponics/pump/state",
+      "pump_command": "aeroponics/pump/command",
+      "faults": "aeroponics/faults",
+      "fault_inject": "aeroponics/fault_inject",
+      "system_mode": "aeroponics/system/mode"
+    }
+  },
+  "sensor_thresholds": {
+    "temperature": { "min": 18.0, "max": 32.0, "unit": "°C" },
+    "humidity": { "min": 50.0, "max": 95.0, "unit": "%" },
+    "water_level": { "min": 20.0, "max": 100.0, "unit": "%" },
+    "ph": { "min": 5.2, "max": 6.8, "unit": "pH" },
+    "ec": { "min": 1.0, "max": 2.8, "unit": "mS/cm" },
+    "root_temp": { "min": 16.0, "max": 26.0, "unit": "°C" }
+  },
+  "misting_control": {
+    "humidity_low_threshold": 70.0,
+    "humidity_high_threshold": 85.0,
+    "high_temp_threshold": 26.0,
+    "mist_duration_sec": 5.0,
+    "normal_rest_sec": 20.0,
+    "hot_rest_sec": 8.0
+  },
+  "fault_detection": {
+    "stuck_reading_threshold": 5,
+    "sensor_offline_timeout_sec": 10.0,
+    "pump_failure_timeout_sec": 20.0,
+    "fault_cooldown_sec": 10.0
+  },
+  "telegram": {
+    "bot_token": "",
+    "chat_id": ""
+  },
+  "cloud_simulation": {
+    "network_delay_ms": 300,
+    "cloud_mode_enabled": false,
+    "internet_connected": true
+  }
+}
