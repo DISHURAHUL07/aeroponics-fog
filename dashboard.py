@@ -47,6 +47,42 @@ st.set_page_config(
 database.init_db()
 
 
+@st.cache_resource
+def start_background_iot_engine():
+    """
+    Ensures broker, fog node, and sensor simulator run seamlessly in cloud environments
+    (such as Streamlit Community Cloud) without needing manual terminal commands.
+    """
+    import socket
+    import subprocess
+    import sys
+
+    def is_port_open(port: int, host: str = "127.0.0.1") -> bool:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.settimeout(0.5)
+            return s.connect_ex((host, port)) == 0
+
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    if not is_port_open(1883):
+        # 1. Start embedded MQTT broker
+        subprocess.Popen([sys.executable, os.path.join(base_dir, "broker.py")])
+        time.sleep(2)
+
+    # 2. Start Fog Node and Sensor Simulator
+    subprocess.Popen([sys.executable, os.path.join(base_dir, "fog_node.py")])
+    time.sleep(1)
+    subprocess.Popen([sys.executable, os.path.join(base_dir, "sensor_simulator.py")])
+    return True
+
+
+# Auto-start services if in cloud
+try:
+    start_background_iot_engine()
+except Exception:
+    pass
+
+
 def send_mqtt_command(topic: str, message: str):
     """Utility to publish single command to MQTT broker."""
     try:
